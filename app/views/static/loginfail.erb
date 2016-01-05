@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+
+
+<head>
+<link rel="stylesheet" type="text/css" href="css/application.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/application.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+<div class="brand">
+<a href="/">
+<img class ="logo" src="img/logo.png" href="/"></img>
+</a>
+</div>
+
+<div class="indexlogin">
+<div class="signup">
+<h2> Sign up for an account!</h2>
+	<form class ="form-inline" method=post action=/signup>
+		<input class="form-control" type=text placeholder="Email" name="user[email]"><br>
+		<input class ="form-control" type=password placeholder="Password" name="user[password]"></br>
+		<button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
+	</form>
+</div>
+
+
+
+<div class="login">
+<h2> Login </h2>
+<form class="form-inline" method=post action=/login>
+	<input class="form-control" type=text placeholder="Email" name="user[email]"><br>
+	<input class ="form-control" type=password placeholder="Password" name="user[password]"></br>
+	<button type="submit" class="btn btn-warning btn-lg">Log In</button>
+</form>
+<p> Username / Password Error ! </p>
+</div>
+</div>
+
+</body>

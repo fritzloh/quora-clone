@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<head>
+<link rel="stylesheet" type="text/css" href="css/application.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/application.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+
+
+
+
+<div class="topstories">
+	<h2> Top Stories For You </h2>
+	<% @questions = Question.all.order('id DESC') %>
+	<% @questions.each do |x| %>
+	<div class="topstories_list">
+    <p class="question"><%= x.body %></p>
+	<% if x.answers %>
+	<% @answers = x.answers %>
+	<% @answers.each do |y| %>
+		 <div><p class="answer"> Answer: </p> <%= y.body %></div><br></br>
+	<%end%>
+
+
+ 	<form action="/question_vote/<%=x.id%>/up" method="post" class="form-inline">
+	<input type="hidden" name="upvote" value="<%=x.id%>">
+	<button type="submit" class="btn_logout btn-warning btn-lg_logout"> Upvote: <%= x.question_votes.where("vote > 0").count - x.question_votes.where("vote < 1").count%></button> 
+	</form>
+
+	<form action="/question_vote/<%=x.id%>/down" method="post" class="form-inline">
+	<input type="hidden" name="downvote" value="<%=x.id%>">
+	<button type="submit" class="btn_logout btn-warning btn-lg_logout"> Downvote</button> 
+	</form>
+	
+
+
+<div class="forms">
+    <form class="form-inline" action="/answers/create" method="post">
+	<input class="form-control_2" type="text" name="answer[body]" placeholder="Your Answer">
+	<input type="hidden" value="<%=x.id%>" name="answer[question_id]">
+	<button type="submit" class="btn_logout btn-warning btn-lg_logout">Answer</button>
+	</form>
+
+
+    <% if x.user.id == session[:user_id]%>
+	<h2>Edit your question</h2>
+	<form action="/questions/<%= x.id %>" method="post">
+	<input type="hidden" name="_method" value="patch">
+	<textarea class="editbox" name="question[body]"> <%= x.body %></textarea>
+	<button type="submit" class="btn_logout btn-warning btn-lg_logout">Update</button>
+	</form>
+	<%end%>
+
+    <% if x.user.id == session[:user_id]%>
+	<form action="/questions/<%= x.id %>" method="post" class="form-inline">
+	<input type="hidden" name="_method" value="delete">
+	<button type="submit" class="btn_logout btn-warning btn-lg_logout">DELETE!</button> Delete question? <b>(Warning: This action is unreversible!)</b>
+	</form>
+	<!-- <a href="questions/:id" data-method="delete" rel="nofollow">Delete this entry</a> -->
+	<%end%>
+
+
+
+
+</div>
+
+
+
+
+ 	</div>
+	<%end%>
+	<%end%>
+</div>
+</body>
+
+
+</body>

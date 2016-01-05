@@ -1,0 +1,60 @@
+
+<!DOCTYPE HTML>
+
+<head>
+<link rel="stylesheet" type="text/css" href="css/application.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/js/application.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+
+
+<body class="layoutbody">
+
+<div class="flex">
+
+
+	<div class="nav-logo">
+	<% if session[:user_id] != nil %>
+	<a href="/">
+	<img src="img/logo.png" href="/"></img>
+	</a>
+	<% end%>
+	</div>
+
+
+	<div class="nav-question">
+	<% if session[:user_id] != nil %>
+	<form class="form-inline" action="/questions/create" method="post">
+	<input class="form-control_2" type="text" name="question[body]" placeholder="Your Question">
+	<button type="submit" class="btn_logout btn-warning btn-lg_logout">Ask Question</button>
+	</form>
+	<% end %>
+	</div>
+	
+
+	<div class="nav-user">
+	<% if session[:user_id] != nil %>
+	<form action="/logout" method="post">
+	<button class="btn_logout btn-warning btn-lg_logout">Log Out</button>
+	</form>
+	<% end %>
+	</div>
+</div>
+
+
+<%=yield%>
+</body>
+
+
+<!-- <body>
+
+	<form action="/questions/create" method="post">
+	<input type="text" name="question[body]" placeholder="Your Question">
+	<input type=submit value"Ask Now">
+	</form>
+
+
+</body> -->
